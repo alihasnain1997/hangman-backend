@@ -2,6 +2,8 @@ const path = require('path')
 var express = require('express')
 var app = express();
 var userRoutes = require('../routes/userRoutes.js')
+var wordRoutes = require('../routes/wordRoutes.js')
+
 
 
 const public = path.join(__dirname, `../public`);
@@ -13,6 +15,8 @@ app.use(express.json());
 
 // default URL to API
 app.use('/auth', userRoutes)
+app.use('/words', wordRoutes)
+
 
 app.use('/', function (req, res) {
   res.send('node-ex-api works :-)');

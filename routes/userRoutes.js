@@ -12,7 +12,6 @@ router.post('/login', async (req, res) => {
                 password: req.body.password
             }
         })
-        console.log(result, result.length)
         if (result.length>0) {
             res.status(200).json({
                 msg: 'user logged in'
