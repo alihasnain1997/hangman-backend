@@ -27,7 +27,6 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 
     const word = req.body.word;
-    console.log('word',word)
     if (word == undefined || word.trim() == null || word.trim() == "") {
         res.status(400).json({
             error: "invalid input"
