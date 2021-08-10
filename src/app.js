@@ -5,6 +5,7 @@ const http = require('http')
 const socketio = require('socket.io');
 const server = http.createServer(app)
 const io = socketio(server)
+var cors = require('cors')
 
 var userRoutes = require('../routes/userRoutes.js')
 var wordRoutes = require('../routes/wordRoutes.js')
@@ -15,8 +16,8 @@ const users = [];
 const public = path.join(__dirname, `../public`);
 //console.log(itemsRouter);
 
+app.use(cors())
 app.use(express.static(public));
-
 app.use(express.json());
 
 
@@ -41,17 +42,7 @@ io.on('connection', (socket) => {
 
     socket.emit(to, from, msg)
   })
-  // console.log('new connection', socket)
-  // socket.on('sendToServer', (message) => {
-  //     console.log('message is emitted', message)
-  // })
 
-  // socket.on('machineId', async (message) => {
-  //     console.log('machine ID is ', message)
-  //     const rows = await getMachineData(message)
-  //     socket.emit('rows', rows)
-
-  // })
 })
 
 
