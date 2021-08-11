@@ -4,8 +4,19 @@ var app = express();
 const http = require('http')
 const socketio = require('socket.io');
 const server = http.createServer(app)
-const io = socketio(server)
 var cors = require('cors')
+
+// const io = socketio(server)
+
+//for cors issue 
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "http://localhost:4200/",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
+  }
+});
 
 var userRoutes = require('../routes/userRoutes.js')
 var wordRoutes = require('../routes/wordRoutes.js')
